@@ -22,12 +22,7 @@ function storeMovies(movieList) {
 // Jesper: takes an api key and uses it to fetch movies which are then returned
 async function fetchMovies(apiKey) {
     let url = `http://localhost:8080/api/movies?key=${apiKey}`;
-    let response = await fetch(`http://localhost:8080/api/movies?key=${apiKey}`, {
-        method : 'GET',
-        headers : {
-            'x-zocom' : apiKey
-        }
-    });
+    let response = await fetch(url);
     let data = await response.json();
     return data.data;
     
@@ -35,9 +30,7 @@ async function fetchMovies(apiKey) {
 
 async function fetchApiKey() {
     let url = 'http://localhost:8081/api/keys';
-    let response = await fetch('http://localhost:8081/api/keys', {
-        method : 'POST'
-    });
+    let response = await fetch(url);
     let data = await response.json();
     console.log(data.data);
     return data.data;
